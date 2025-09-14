@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary Meta Tags -->
+    <title>Finance Tracker - Personal Finance Management</title>
+    <meta name="title" content="Finance Tracker - Personal Finance Management">
+    <meta name="description" content="Track your income, expenses, and budgets with our intuitive personal finance management application. Visualize your spending habits and take control of your financial future.">
+    <meta name="keywords" content="finance, budget, expense tracker, income tracker, personal finance, money management">
+    <meta name="author" content="Finance Tracker">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-finance-tracker.com">
+    <meta property="og:title" content="Finance Tracker - Personal Finance Management">
+    <meta property="og:description" content="Track your income, expenses, and budgets with our intuitive personal finance management application.">
+    <meta property="og:image" content="/og-image.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://your-finance-tracker.com">
+    <meta property="twitter:title" content="Finance Tracker - Personal Finance Management">
+    <meta property="twitter:description" content="Track your income, expenses, and budgets with our intuitive personal finance management application.">
+    <meta property="twitter:image" content="/twitter-image.png">
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#3B82F6">
+    
+    <!-- Preload critical fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Prevent flash of unstyled content -->
+    <style>
+      /* Critical CSS for loading state */
+      #root {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #F9FAFB;
+      }
+      
+      .initial-loader {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+      
+      .initial-loader-spinner {
+        width: 40px;
+        height: 40px;
+        border: 3px solid #E5E7EB;
+        border-top: 3px solid #3B82F6;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      
+      .initial-loader-text {
+        color: #6B7280;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.875rem;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      /* Hide loader when React app loads */
+      .app-loaded #initial-loading {
+        display: none;
+      }
+    </style>
+    
+    <!-- Progressive Web App -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Finance Tracker">
+    
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    
+    <!-- Performance hints -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+  </head>
+  
+  <body>
+    <!-- Fallback for users with JavaScript disabled -->
+    <noscript>
+      <div style="
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 2rem;
+        text-align: center;
+        font-family: system-ui, sans-serif;
+        background-color: #F9FAFB;
+      ">
+        <h1 style="color: #1F2937; margin-bottom: 1rem;">Finance Tracker</h1>
+        <p style="color: #6B7280; margin-bottom: 2rem; max-width: 400px;">
+          This application requires JavaScript to be enabled. 
+          Please enable JavaScript in your browser settings to use Finance Tracker.
+        </p>
+        <div style="
+          padding: 1rem 2rem;
+          background: #3B82F6;
+          color: white;
+          border-radius: 0.5rem;
+          text-decoration: none;
+        ">
+          <a href="https://enable-javascript.com" target="_blank" rel="noopener" style="color: white; text-decoration: none;">
+            Learn how to enable JavaScript
+          </a>
+        </div>
+      </div>
+    </noscript>
+    
+    <!-- App container -->
+    <div id="root">
+      <!-- Initial loading state -->
+      <div id="initial-loading" class="initial-loader">
+        <div class="initial-loader-spinner"></div>
+        <div class="initial-loader-text">Loading Finance Tracker...</div>
+      </div>
+    </div>
+    
+    <!-- React app script -->
+    <script type="module" src="/src/index.jsx"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+      // Register service worker for offline functionality
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+              console.log('SW registered: ', registration);
+            })
+            .catch((registrationError) => {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+    </script>
+    
+    <!-- Global error handler -->
+    <script>
+      window.addEventListener('error', (event) => {
+        console.error('Global error caught:', event.error);
+        // You could send this to an error reporting service
+      });
+      
+      window.addEventListener('unhandledrejection', (event) => {
+        console.error('Unhandled promise rejection:', event.reason);
+        // You could send this to an error reporting service
+      });
+    </script>
+  </body>
+</html>
